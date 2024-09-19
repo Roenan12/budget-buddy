@@ -1,0 +1,14 @@
+.login {
+  background-color: var(--color-light--1);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5vw;
+}
+
+@media (width >= 40rem) {
+  body {
+    overflow: hidden;
+  }
+}

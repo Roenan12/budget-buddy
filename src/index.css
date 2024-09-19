@@ -5,12 +5,24 @@
   --color-accent--1: #48cfcb;
   --color-accent--2: #229799;
   --color-accent--3: #5ea4fb;
+  --color-accent--4: #2d79f3;
+  --color-accent--5: #364f6b;
+  --color-accent--6: #253649;
 
-  --color-dark--0: #333333;
-  --color-dark--1: #424242;
-  --color-dark--2: #595c5f;
+  --color-dark--0: #242424;
+  --color-dark--1: #333333;
+  --color-dark--2: #424242;
+  --color-dark--3: #595c5f;
+  --color-dark--4: #8b8e98;
   --color-light--0: #ffffff;
   --color-light--1: #f5f5f5;
+  --color-light--2: #e8e8e8;
+  --color-light--3: #e5e5e5;
+  --color-light--4: #efefef;
+
+  --color-error-0: #721c24;
+  --color-error-1: #f5c6cb;
+  --color-error-2: #f8d7da;
 }
 
 body {
@@ -54,11 +66,11 @@ h5 {
 }
 
 p {
-  /*16px - 18px */
-  font-size: 1rem;
+  /*14px - 16px */
+  font-size: 0.875rem;
   font-size: clamp(
-    1rem,
-    0.9696601941747572rem + 0.12944983818770225vw,
-    1.125rem
+    0.875rem,
+    0.8446601941747572rem + 0.12944983818770225vw,
+    1rem
   );
 }
