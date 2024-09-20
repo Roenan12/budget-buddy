@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./LoginForm.module.css";
+import Button from "./Button";
 
 function LoginForm() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -7,19 +8,19 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  const togglePasswordVisibility = () => {
+  function togglePasswordVisibility() {
     setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
+  }
 
-  const handlePasswordChange = (e) => {
+  function handlePasswordChange(e) {
     const value = e.target.value;
     setPassword(value);
     if (isSignUp) {
       validatePassword(value);
     }
-  };
+  }
 
-  const validatePassword = (password) => {
+  function validatePassword(password) {
     const errors = [];
     if (password.length < 8) {
       errors.push("Password must be at least 8 characters long.");
@@ -34,16 +35,20 @@ function LoginForm() {
       errors.push("Password must contain at least one symbol.");
     }
     setErrors(errors);
-  };
+  }
 
-  const toggleForm = () => {
+  function toggleForm() {
     setIsSignUp((prevIsSignUp) => !prevIsSignUp);
     setErrors([]);
-  };
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+  }
 
   return (
     <>
-      <form className={styles.form_container}>
+      <form className={styles.form_container} onSubmit={handleSubmit}>
         <div className={styles.logo_container}>
           <img
             className={styles.logo}
@@ -52,9 +57,9 @@ function LoginForm() {
           />
         </div>
         <div className={styles.title_container}>
-          <p className={styles.title}>
+          <h5 className={styles.title}>
             {isSignUp ? "Create an Account" : "Login to your Account"}
-          </p>
+          </h5>
           <span className={styles.subtitle}>
             {isSignUp
               ? "Sign up to get started with our app."
@@ -80,7 +85,6 @@ function LoginForm() {
             />
           </div>
         </div>
-
         <div className={styles.input_container}>
           <label className={styles.input_label} htmlFor="password_field">
             Password
@@ -120,7 +124,6 @@ function LoginForm() {
             </div>
           )}
         </div>
-
         {isSignUp && (
           <div className={styles.input_container}>
             <label
@@ -145,14 +148,9 @@ function LoginForm() {
             </div>
           </div>
         )}
-
-        <button
-          title={isSignUp ? "Sign Up" : "Sign In"}
-          type="submit"
-          className={styles.login_btn}
-        >
+        <Button type="login_btn">
           <span>{isSignUp ? "Sign Up" : "Sign In"}</span>
-        </button>
+        </Button>
 
         <div className={styles.separator}>
           <hr className={styles.line} />
@@ -160,17 +158,17 @@ function LoginForm() {
           <hr className={styles.line} />
         </div>
 
-        <button type="submit" className={styles.google_login}>
+        <Button type="google_login">
           <img src="/google-icon.svg" alt="Google Icon" />
           <span>
             {isSignUp ? "Sign Up with Google" : "Sign In with Google"}
           </span>
-        </button>
+        </Button>
 
-        <button type="submit" className={styles.apple_login}>
-          <img src="apple-icon.svg" alt="Apple Icon" />
+        <Button type="apple_login">
+          <img src="/apple-icon.svg" alt="Apple Icon" />
           <span>{isSignUp ? "Sign Up with Apple" : "Sign In with Apple"}</span>
-        </button>
+        </Button>
 
         <p>
           {isSignUp ? "Already have an account?" : "Don't have an account?"}
