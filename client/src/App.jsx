@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Login, Dashboard, PageNotFound } from "./pages";
+import { Home, Login, Dashboard, PageNotFound } from "./pages";
 import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
+            <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="*" element={<PageNotFound />} />
