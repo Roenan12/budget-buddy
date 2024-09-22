@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 function LoginForm() {
   const { handleLogin, handleRegister, isAuthenticated } = useAuthContext();
   const [isSignUp, setIsSignUp] = useState(false);
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -62,7 +61,7 @@ function LoginForm() {
         setErrors(["Passwords do not match"]);
         return;
       }
-      handleRegister(name, email, password);
+      handleRegister(email, password);
     } else {
       handleLogin(email, password);
     }
@@ -77,6 +76,7 @@ function LoginForm() {
           alt="Budget Buddy logo"
         />
       </div>
+
       <div className={styles.title_container}>
         <h5 className={styles.title}>
           {isSignUp ? "Create an Account" : "Login to your Account"}
@@ -87,26 +87,7 @@ function LoginForm() {
             : "Get started with our app, just create an account and enjoy your experience."}
         </span>
       </div>
-      {isSignUp && (
-        <div className={styles.input_container}>
-          <label className={styles.input_label} htmlFor="name_field">
-            Name
-          </label>
-          <div className={styles.input_wrapper}>
-            <img src="/user-icon.svg" className={styles.icon} alt="User Icon" />
-            <input
-              placeholder="your name"
-              type="text"
-              className={styles.input_field}
-              id="name_field"
-              aria-label="name_field"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-        </div>
-      )}
+
       <div className={styles.input_container}>
         <label className={styles.input_label} htmlFor="email_field">
           Email
@@ -125,6 +106,7 @@ function LoginForm() {
           />
         </div>
       </div>
+
       <div className={styles.input_container}>
         <label className={styles.input_label} htmlFor="password_field">
           Password
@@ -155,6 +137,7 @@ function LoginForm() {
             </button>
           )}
         </div>
+
         {isSignUp && errors.length > 0 && (
           <div className={styles.error_tooltip}>
             {errors.map((error, index) => (
@@ -165,6 +148,7 @@ function LoginForm() {
           </div>
         )}
       </div>
+
       {isSignUp && (
         <div className={styles.input_container}>
           <label
@@ -196,6 +180,7 @@ function LoginForm() {
       <Button type="login_btn">
         <span>{isSignUp ? "Sign Up" : "Sign In"}</span>
       </Button>
+
       <div className={styles.separator}>
         <hr className={styles.line} />
         <span>Or</span>

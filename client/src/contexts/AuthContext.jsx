@@ -39,9 +39,9 @@ function AuthProvider({ children }) {
     }
   }
 
-  async function handleRegister(name, email, password) {
+  async function handleRegister(email, password) {
     try {
-      const userData = await register({ name, email, password });
+      const userData = await register({ email, password });
       dispatch({ type: "register", payload: userData });
     } catch (error) {
       dispatch({ type: "error", payload: error.message });
