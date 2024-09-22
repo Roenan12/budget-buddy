@@ -9,7 +9,7 @@ function Home() {
       <div>
         <h2 className={styles.title}>Budget Buddy</h2>
         <h3>
-          Take Control of <span className="accent">Your Money</span>
+          Take Control of <span className="accent-2">Your Money</span>
         </h3>
         <h5>
           Manage your personal budgets efficiently. Start your journey now.
