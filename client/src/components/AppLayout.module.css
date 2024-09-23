@@ -71,6 +71,6 @@
 .main {
   grid-area: main;
   background-color: var(--color-light--1);
-  padding: 1rem 2.4rem 3.2rem;
+  padding: 0 2.4rem 3.2rem;
   /* overflow-y: auto; /* Scroll if content overflows */
 }
