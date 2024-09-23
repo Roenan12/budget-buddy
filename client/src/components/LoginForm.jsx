@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 function LoginForm() {
   const { handleLogin, handleRegister, isAuthenticated } = useAuthContext();
   const [isSignUp, setIsSignUp] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("new@mail.com");
+  const [password, setPassword] = useState("Qwerty123@");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
