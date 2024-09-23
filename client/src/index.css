@@ -54,6 +54,7 @@
 body {
   font-family: "Manrope", sans-serif;
   background-color: var(--color-light--1);
+  margin: 0;
 }
 
 img {
@@ -70,6 +71,7 @@ h5,
 h6 {
   font-weight: bold;
   line-height: var(--lh-1);
+  margin: 0;
 }
 
 h1,
