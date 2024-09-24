@@ -1,19 +1,27 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./AppLayout.module.css";
 import { dashboard, wallet, savings, expenses } from "../assets/icons";
-import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <aside className={styles.sidebar}>
       <div className={styles.logo}>
-        <img className={styles.logoIcon} src="./budget-icon.png"></img>
-        <h4>BUDGET BUDDY</h4>
+        <img
+          className={styles.logoIcon}
+          src="./budget-icon.png"
+          alt="Budget Buddy Logo"
+        />
+        <h4 className={styles.logoName}>BUDGET BUDDY</h4>
       </div>
       <nav>
         <ul className={styles.navlinks}>
-          <li onClick={() => navigate("/dashboard")}>
+          <li
+            onClick={() => navigate("/dashboard")}
+            className={location.pathname === "/dashboard" ? styles.active : ""}
+          >
             <img
               src={dashboard}
               alt="Dashboard Icon"
@@ -21,15 +29,24 @@ function Sidebar() {
             />
             Dashboard
           </li>
-          <li onClick={() => navigate("/budgets")}>
+          <li
+            onClick={() => navigate("/budgets")}
+            className={location.pathname === "/budgets" ? styles.active : ""}
+          >
             <img src={wallet} alt="Wallet Icon" className={styles.navIcon} />
             Budgets
           </li>
-          <li onClick={() => navigate("/savings")}>
+          <li
+            onClick={() => navigate("/savings")}
+            className={location.pathname === "/savings" ? styles.active : ""}
+          >
             <img src={savings} alt="Savings Icon" className={styles.navIcon} />
             Savings
           </li>
-          <li onClick={() => navigate("/expenses")}>
+          <li
+            onClick={() => navigate("/expenses")}
+            className={location.pathname === "/expenses" ? styles.active : ""}
+          >
             <img
               src={expenses}
               alt="Bill List Icon"

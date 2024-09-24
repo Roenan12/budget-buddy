@@ -28,6 +28,10 @@
   box-sizing: border-box;
 }
 
+.logoName {
+  font-size: var(--fs-300);
+}
+
 .navIcon {
   width: 25px;
   height: 25px;
@@ -39,6 +43,7 @@
   margin-top: var(--space-sm);
   list-style: none;
 }
+
 .navlinks li {
   color: var(--color-dark--1);
   font-size: var(--fs-200);
@@ -51,6 +56,12 @@
 
 .navlinks li:hover {
   background-color: var(--color-light--2);
+  border-radius: var(--round-xs);
+}
+
+.navlinks li.active {
+  background-color: var(--color-light--2);
+  color: var(--color-accent--2);
   border-radius: var(--round-xs);
 }
 
