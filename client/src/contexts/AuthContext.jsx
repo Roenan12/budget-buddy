@@ -7,30 +7,49 @@ const initialState = {
   user: null,
   isAuthenticated: false,
   error: false,
+  isLoading: false,
 };
 
 function reducer(state, action) {
   switch (action.type) {
+    case "loading":
+      return { ...state, isLoading: true };
     case "login":
-      return { ...state, user: action.payload, isAuthenticated: true };
+      return {
+        ...state,
+        user: action.payload,
+        isAuthenticated: true,
+        isLoading: false,
+      };
     case "register":
-      return { ...state, user: action.payload, isAuthenticated: true };
+      return {
+        ...state,
+        user: action.payload,
+        isAuthenticated: true,
+        isLoading: false,
+      };
     case "logout":
-      return { ...state, user: null, isAuthenticated: false };
+      return { ...state, user: null, isAuthenticated: false, isLoading: false };
     case "error":
-      return { ...state, error: true, message: action.payload };
+      return {
+        ...state,
+        error: true,
+        message: action.payload,
+        isLoading: false,
+      };
     default:
       throw new Error("Unknown action");
   }
 }
 
 function AuthProvider({ children }) {
-  const [{ user, isAuthenticated, error }, dispatch] = useReducer(
+  const [{ user, isAuthenticated, error, isLoading }, dispatch] = useReducer(
     reducer,
     initialState
   );
 
   async function handleLogin(email, password) {
+    dispatch({ type: "loading" });
     try {
       const userData = await login({ email, password });
       dispatch({ type: "login", payload: userData });
@@ -40,6 +59,7 @@ function AuthProvider({ children }) {
   }
 
   async function handleRegister(email, password) {
+    dispatch({ type: "loading" });
     try {
       const userData = await register({ email, password });
       dispatch({ type: "register", payload: userData });
@@ -49,6 +69,7 @@ function AuthProvider({ children }) {
   }
 
   async function handleLogout() {
+    dispatch({ type: "loading" });
     try {
       await logout();
       dispatch({ type: "logout" });
@@ -62,10 +83,11 @@ function AuthProvider({ children }) {
       value={{
         user,
         isAuthenticated,
+        error,
+        isLoading,
         handleLogin,
         handleRegister,
         handleLogout,
-        error,
       }}
     >
       {children}

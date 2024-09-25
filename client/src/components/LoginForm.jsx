@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../contexts/AuthContext";
 import styles from "./LoginForm.module.css";
-import Button from "./Button";
+import { Button, Loader } from "./index";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
-  const { handleLogin, handleRegister, isAuthenticated } = useAuthContext();
+  const { handleLogin, handleRegister, isAuthenticated, isLoading } =
+    useAuthContext();
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("new@mail.com");
   const [password, setPassword] = useState("Qwerty123@");
@@ -50,20 +51,16 @@ function LoginForm() {
     setErrors(errors);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (!email || !password) return;
-
-    handleLogin({ email, password });
-
     if (isSignUp) {
       if (password !== confirmPassword) {
         setErrors(["Passwords do not match"]);
         return;
       }
-      handleRegister(email, password);
+      await handleRegister(email, password);
     } else {
-      handleLogin(email, password);
+      await handleLogin(email, password);
     }
   }
 
@@ -178,7 +175,11 @@ function LoginForm() {
       )}
 
       <Button type="login_btn">
-        <span>{isSignUp ? "Sign Up" : "Sign In"}</span>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <span>{isSignUp ? "Sign Up" : "Sign In"}</span>
+        )}
       </Button>
 
       <div className={styles.separator}>
@@ -188,12 +189,20 @@ function LoginForm() {
       </div>
 
       <Button type="google_login">
-        <img src="/google-icon.svg" alt="Google Icon" />
+        <img
+          className={styles.login_icon}
+          src="/google-icon.svg"
+          alt="Google Icon"
+        />
         <span>{isSignUp ? "Sign Up with Google" : "Sign In with Google"}</span>
       </Button>
 
       <Button type="apple_login">
-        <img src="/apple-icon.svg" alt="Apple Icon" />
+        <img
+          className={styles.login_icon}
+          src="/apple-icon.svg"
+          alt="Apple Icon"
+        />
         <span>{isSignUp ? "Sign Up with Apple" : "Sign In with Apple"}</span>
       </Button>
 
