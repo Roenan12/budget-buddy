@@ -174,9 +174,9 @@ function LoginForm() {
         </div>
       )}
 
-      <Button type="login_btn">
+      <Button type="login_btn" disabled={isLoading}>
         {isLoading ? (
-          <Loader />
+          <Loader color="white" />
         ) : (
           <span>{isSignUp ? "Sign Up" : "Sign In"}</span>
         )}
