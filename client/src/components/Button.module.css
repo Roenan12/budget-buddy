@@ -3,7 +3,6 @@
   height: 40px;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: var(--space-xs);
   border-radius: var(--round-sm);
   outline: none;
@@ -11,26 +10,44 @@
 }
 
 .login_btn {
-  border: 0;
   background: var(--color-accent--2);
-  border-radius: var(--round-sm);
-  outline: none;
-  color: #ffffff;
-  cursor: pointer;
+  color: var(--color-light--0);
+  border: none;
+  justify-content: center;
 }
 
 .google_login {
-  background: #ffffff;
-  color: #242424;
+  background: var(--color-light--0);
+  color: var(--color-dark--0);
   border: 1px solid var(--color-light--3);
+  justify-content: center;
+
   filter: drop-shadow(0px 1px 0px var(--color-light--4))
     drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
 }
 
 .apple_login {
-  background: #212121;
-  color: #ffffff;
+  background: var(--color-dark--0);
+  color: var(--color-light--0);
   border: 1px solid var(--color-light--3);
+  justify-content: center;
+
   filter: drop-shadow(0px 1px 0px var(--color-light--4))
     drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+}
+
+.logout {
+  background-color: var(--color-light--1);
+  color: var(--color-dark--1);
+  border: none;
+  justify-content: start;
+  padding: 0 1rem;
+  font-weight: 200;
+  font-size: var(--fs-200);
+  transition: 0.2s ease-out;
+}
+
+.logout:hover {
+  background-color: var(--color-light--2);
+  border-radius: var(--round-xs);
 }
